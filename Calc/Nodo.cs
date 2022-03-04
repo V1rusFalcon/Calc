@@ -1,9 +1,11 @@
 ﻿namespace Calc
 {
 #nullable enable
-    internal class Nodo
+    internal abstract class Nodo
     {
-        Nodo left, right;
+        public Nodo left, right;
+        public abstract float value { get; }
+        public abstract string ToString();
 
     }
 #nullable disable
