@@ -11,34 +11,32 @@ class Program
             List<dynamic> values = new List<dynamic>();
             string input = Console.ReadLine() + "=";
             #region input parsing
-            int? value = null;
+            NumberBuilder value = null;
             for (int i = 0; i < input.Length; i++)
             {
-                if (char.IsNumber(input[i]))
+                switch(input[i])
                 {
-                    if (value == null) value = 0;
-                    value *= 10;
-                    value += int.Parse(input[i].ToString());
-                }
-                else
-                {
-                    if (value != null)
-                        values.Add(value);
-                    values.Add(
-                        input[i] switch
-                        {
-                            '+' => Segno.sign.plus,
-                            '-' => Segno.sign.minus,
-                            '/' => Segno.sign.div,
-                            '*' => Segno.sign.mul,
-                            '=' => Segno.sign.equal,
-                            _ => throw new NotImplementedException()
-                        }
-                    );
-                    value = null;
+                    case char digit when char.IsDigit(input[i]):
+                        if (value == null) value = new NumberBuilder();
+                        
+                        value.Add(int.Parse(input[i].ToString()));
+                        break;
+                    case '.' when value != null: value.Decimals(); break;
+                    case 'E' when value != null:
+                    case 'e' when value != null:
+                        value.ENotation();
+                        break;
+                    case '+': 
+                    case '-':
+                    case '*':
+                    case '/':
+                        if(value != null) values.Add(value.Value);
+                        values.Add(Segno.Parse(input[i]));
+                        value = null;
+                        break;
+                    case '=': values.Add(value.Value); break;
                 }
             }
-            values.RemoveAt(values.Count - 1);
             #endregion
             #region BTree building
             Nodo tree = null;
@@ -70,7 +68,7 @@ class Program
      * like mul(*) or div(/), which it steal the right leaf of the root and
      * makes it the left leaf of the new sign and is added to the right of the root.
      */
-    void Populate(ref Nodo root, float value)
+    void Populate(ref Nodo root, double value)
     {
         if (root == null)
         {

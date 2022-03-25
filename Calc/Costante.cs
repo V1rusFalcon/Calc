@@ -8,14 +8,14 @@ namespace Calc
 {
     internal class Costante : Nodo
     {
-        float _value;
+        double _value;
 
-        public Costante(float value)
+        public Costante(double value)
         {
             _value = value;
         }
 
-        public override float value => _value;
+        public override double value => _value;
         public override string ToString()
         {
             return _value.ToString();

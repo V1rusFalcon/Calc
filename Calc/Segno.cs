@@ -18,8 +18,9 @@ namespace Calc
             md = div|mul,
             equal = 128
         }
+        public static sign Parse(char c) => c switch { '+' => sign.plus, '-' => sign.minus, '*' => sign.mul, '/' => sign.div, _ => throw new NotImplementedException() };
         public sign Sign;
-        public override float value
+        public override double value
         {
             get {
                 return Sign switch

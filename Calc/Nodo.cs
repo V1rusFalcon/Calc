@@ -4,7 +4,7 @@
     internal abstract class Nodo
     {
         public Nodo left, right;
-        public abstract float value { get; }
+        public abstract double value { get; }
         public abstract string ToString();
 
     }
