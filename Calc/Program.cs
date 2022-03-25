@@ -8,7 +8,7 @@ class Program
         do
         {
             Console.Write("arithmetic expression: ");
-            List<Value> values = new List<Value>();
+            List<dynamic> values = new List<dynamic>();
             string input = Console.ReadLine() + "=";
             #region input parsing
             int? value = null;
@@ -23,19 +23,18 @@ class Program
                 else
                 {
                     if (value != null)
-                        values.Add(new Value() { Number = value });
-                    values.Add(new Value()
-                    {
-                        Sign = input[i] switch
+                        values.Add(value);
+                    values.Add(
+                        input[i] switch
                         {
                             '+' => Segno.sign.plus,
                             '-' => Segno.sign.minus,
                             '/' => Segno.sign.div,
                             '*' => Segno.sign.mul,
-                            '=' => null,
+                            '=' => Segno.sign.equal,
                             _ => throw new NotImplementedException()
                         }
-                    });
+                    );
                     value = null;
                 }
             }
@@ -45,8 +44,8 @@ class Program
             Nodo tree = null;
             for (int i = 0; i < values.Count; i++)
             {
-                if (values[i].Number.HasValue) Populate(ref tree, values[i].Number.Value);
-                if (values[i].Sign.HasValue) Populate(ref tree, values[i].Sign.Value);
+                if (values[i] is int) Populate(ref tree, values[i]);
+                if (values[i] is Segno.sign) Populate(ref tree, (Segno.sign)values[i]);
             }
             #endregion
 

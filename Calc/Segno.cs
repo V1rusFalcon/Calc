@@ -16,6 +16,7 @@ namespace Calc
             div = 8,
             pm = plus|minus,
             md = div|mul,
+            equal = 128
         }
         public sign Sign;
         public override float value
