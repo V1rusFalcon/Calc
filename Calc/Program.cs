@@ -43,10 +43,8 @@ class Program
             #region BTree building
             Nodo tree = null;
             for (int i = 0; i < values.Count; i++)
-            {
-                if (values[i] is int) Populate(ref tree, values[i]);
-                if (values[i] is Segno.sign) Populate(ref tree, (Segno.sign)values[i]);
-            }
+                Populate(ref tree, values[i]);
+
             #endregion
 
             // BTree evaluate
