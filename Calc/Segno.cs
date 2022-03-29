@@ -34,7 +34,8 @@ namespace Calc
         }
         public override string ToString()
         {
-            return "("+left.ToString() + Sign switch { sign.plus => '+', sign.minus => '-', sign.mul => '*', sign.div => '/'} + right.ToString()+")";
+            if(left != null && right != null) return "("+left.ToString() + Sign switch { sign.plus => '+', sign.minus => '-', sign.mul => '*', sign.div => '/'} + right.ToString()+")";
+            return Sign switch { sign.plus => "+", sign.minus => "-", sign.mul => "*", sign.div => "/" };
         }
     }
 }
