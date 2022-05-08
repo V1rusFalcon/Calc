@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calc
 {
-    internal class InputParser
+    public class InputParser
     {
         List<dynamic> values;
         public InputParser(string expression)

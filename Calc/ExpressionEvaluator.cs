@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calc
 {
-    internal class ExpressionEvaluator
+    public class ExpressionEvaluator
     {
         Nodo Tree;
         public ExpressionEvaluator(dynamic[] values)
@@ -16,6 +16,7 @@ namespace Calc
         public ExpressionEvaluator() { }
         public void Populate(dynamic[] values)
         {
+            Tree = null;
             for (int i = 0; i < values.Count(); i++)
                 Populate(ref Tree, values[i]);
         }
