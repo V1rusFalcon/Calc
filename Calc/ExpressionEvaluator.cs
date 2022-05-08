@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MathEvaluator.CalcElements;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calc
+namespace MathEvaluator
 {
     public class ExpressionEvaluator
     {

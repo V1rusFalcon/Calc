@@ -1,4 +1,4 @@
-﻿namespace Calc
+﻿namespace MathEvaluator.CalcElements
 {
 #nullable enable
     internal abstract class Nodo
